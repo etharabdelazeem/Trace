@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-const primaryColor = Color(0xFF082c62);
+const primaryColor = Color(0xFF3E6799);
+const primaryColordark = Color(0xFF082c62);
 
 class CustomButton extends StatelessWidget {
   // const CustomButton({Key? key}) : super(key: key);
@@ -37,7 +38,40 @@ class CustomButton extends StatelessWidget {
   }
 }
 
+class CustomButtonSocial extends StatelessWidget {
+  // const CustomButtonSocial({Key? key}) : super(key: key);
 
+  final IconData icon;
+  final String text;
+  final Function()? onPressed;
+
+  const CustomButtonSocial(
+      {super.key, required this.text, required this.icon, this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+        style: OutlinedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0))),
+        onPressed: onPressed,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(icon),
+              const SizedBox(width: 30.0),
+              Text(text,
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 14,
+                  ))
+            ],
+          ),
+        ));
+  }
+}
 
 
 

@@ -6,7 +6,7 @@ void main() {
   runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(
-        duration: 10,
+        duration: 3,
         goToPage: const WelcomePage(),
       )));
 }

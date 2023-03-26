@@ -7,8 +7,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:try1/main.dart';
 import 'package:try1/splash_page.dart';
 import 'package:try1/welcome_page.dart';
 

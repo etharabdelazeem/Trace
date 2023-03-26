@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
   int duration = 0;
-  Widget goToPage;
+  final Widget goToPage;
   SplashScreen({super.key, required this.goToPage, required this.duration});
 
   @override
