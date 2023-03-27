@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constants/my_widgets.dart';
+import 'library_caregories.dart';
 
 class HomeSlide extends StatelessWidget {
   const HomeSlide({super.key});
@@ -11,6 +12,9 @@ class HomeSlide extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        const SizedBox(
+          height: 70,
+        ),
         CustomButtonIcon(
             onPressed: () {}, text: 'Search', myIcon: Icons.search),
         const SizedBox(
@@ -22,7 +26,12 @@ class HomeSlide extends StatelessWidget {
           height: 30,
         ),
         CustomButtonIcon(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const LibraryCategories()));
+            },
             text: 'Library Categories',
             myIcon: Icons.all_inbox_rounded),
         const SizedBox(

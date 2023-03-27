@@ -17,7 +17,7 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: Image.asset(
         'assets/images/logo.png',
-        fit: BoxFit.scaleDown,
+        fit: BoxFit.fitWidth,
       ),
       // body: Container(
       //   // color: const Color(0xFF082c62),

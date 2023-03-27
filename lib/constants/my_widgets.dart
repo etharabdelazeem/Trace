@@ -119,6 +119,76 @@ class CustomButtonIcon extends StatelessWidget {
   }
 }
 
+class CustomButtonCategory extends StatelessWidget {
+  final String text;
+  final GestureTapCallback onPressed;
+  const CustomButtonCategory({
+    super.key,
+    required this.onPressed,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      fillColor: primaryColor,
+      splashColor: Colors.greenAccent,
+      onPressed: onPressed,
+      shape: const StadiumBorder(),
+      child: SizedBox(
+        width: 350,
+        height: 55,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              const Icon(
+                Icons.folder_outlined,
+                color: Colors.white,
+              ),
+              const SizedBox(
+                width: 10.0,
+              ),
+              Text(
+                text,
+                maxLines: 1,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Logo extends StatelessWidget {
+  final Color myColor;
+  const Logo({super.key, required this.myColor});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'TRACE',
+          style:
+              TextStyle(color: myColor, letterSpacing: 10, fontFamily: 'Inter'),
+        ),
+        const Padding(
+          padding: EdgeInsets.fromLTRB(0.0, 8.0, 8.0, 40),
+          child: Icon(
+            Icons.miscellaneous_services_outlined,
+            color: primaryColordark,
+          ),
+        )
+      ],
+    );
+  }
+}
 // class ColoredButton extends StatelessWidget {
 //   double width = 10;
 //   double hight = 100;
