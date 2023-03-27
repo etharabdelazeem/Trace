@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const primaryColor = Color(0xFF3E6799);
 const primaryColordark = Color(0xFF082c62);
+const primaryColorLight = Color(0x556b8bb1);
 
 class CustomButton extends StatelessWidget {
   // const CustomButton({Key? key}) : super(key: key);
