@@ -74,7 +74,50 @@ class CustomButtonSocial extends StatelessWidget {
   }
 }
 
+class CustomButtonIcon extends StatelessWidget {
+  final String text;
+  final GestureTapCallback onPressed;
+  final IconData myIcon;
+  const CustomButtonIcon(
+      {super.key,
+      required this.onPressed,
+      required this.text,
+      required this.myIcon});
 
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      fillColor: primaryColor,
+      splashColor: Colors.greenAccent,
+      onPressed: onPressed,
+      shape: const StadiumBorder(),
+      child: SizedBox(
+        width: 300,
+        height: 60,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Icon(
+                myIcon,
+                color: Colors.white,
+              ),
+              const SizedBox(
+                width: 10.0,
+              ),
+              Text(
+                text,
+                maxLines: 1,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 // class ColoredButton extends StatelessWidget {
 //   double width = 10;
