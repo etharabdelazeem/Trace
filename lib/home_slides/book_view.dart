@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class BookView extends StatelessWidget {
   // String bookName;
@@ -35,7 +36,17 @@ class BookView extends StatelessWidget {
             Text(search[indexx]['author']),
             // Text(search[indexx]['comments']),
             Text(search[indexx]['image']),
-            Text(search[indexx]['rating']),
+            RatingBar(
+              itemCount: int.parse(search[indexx]['rating']),
+              initialRating: 3,
+              direction: Axis.horizontal,
+              allowHalfRating: true,
+              onRatingUpdate: (double value) {},
+              ratingWidget: RatingWidget(
+                  full: const Icon(Icons.star),
+                  half: const Icon(Icons.star),
+                  empty: const Icon(Icons.star)),
+            ),
           ]),
     ));
   }
