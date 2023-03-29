@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:TRACE/constants/my_widgets.dart';
+// ignore: depend_on_referenced_packages
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -89,7 +90,7 @@ class SettingeSlide extends StatelessWidget {
         thickness: 1,
       ),
       const SizedBox(
-        height: 30,
+        height: 20,
       ),
       CustomButtonIcon(
         onPressed: () {

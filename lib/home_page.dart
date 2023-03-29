@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:TRACE/constants/my_widgets.dart';
 import 'package:TRACE/home_slides/home_slide.dart';

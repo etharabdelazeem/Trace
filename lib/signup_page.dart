@@ -1,28 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:TRACE/constants/my_widgets.dart';
-import 'package:TRACE/home_slides/library_caregories.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
-  Future logIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _emailController.text.trim(),
-      password: _passwordController.text.trim(),
-    );
+  Future signup() async {
+    if (passwordConfirmed()) {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushNamed('auth');
+    }
   }
 
-  void openSignupPage() {
-    Navigator.of(context).pushReplacementNamed('signupPage');
+  bool passwordConfirmed() {
+    if (_passwordController.text.trim() ==
+        _confirmPasswordController.text.trim()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void openLoginPage() {
+    Navigator.of(context).pushReplacementNamed('loginPage');
   }
 
   @override
@@ -30,9 +43,10 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
   }
 
-  static const String _selectedText = 'Log In';
+  static const String _selectedText = 'Sign Up';
   bool? check3 = false;
 
   @override
@@ -103,64 +117,54 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
 
-              //Remember me Text
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: CheckboxListTile(
-                  value: check3,
-                  controlAffinity:
-                      ListTileControlAffinity.leading, //checkbox at left
-                  onChanged: (bool? value) {
-                    setState(() {
-                      check3 = value;
-                    });
-                  },
-                  title: const Text("Remember Me"),
-                ),
-              ),
-
-              const SizedBox(height: 30),
-
-              //Sign in button
-              GestureDetector(
-                onTap: logIn,
-                child: CustomButton(
-                  onPressed: logIn,
-                  text: 'Log In',
-                ),
-              ),
-
               const SizedBox(height: 10),
 
-              //Sign in as a guest button
-              CustomButton(
-                onPressed: () => {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LibraryCategories(),
-                      ))
-                },
-                text: 'Log In as a Guest',
+              //Confirm Password Textfeild
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: TextField(
+                      controller: _confirmPasswordController,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        border: UnderlineInputBorder(),
+                        hintText: 'Confirm Password',
+                      ),
+                    ),
+                  ),
+                ),
               ),
 
-              const SizedBox(
-                height: 60,
+              const SizedBox(height: 50),
+
+              //Sign up button
+              GestureDetector(
+                child: CustomButton(
+                  onPressed: signup,
+                  text: 'Sign Up',
+                ),
               ),
+
+              const SizedBox(height: 120),
 
               //Text
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Do not have an account?',
+                  const Text('Already have an account?',
                       style: TextStyle(
                         fontFamily: 'Inter',
                         color: primaryColorLight,
                       )),
                   GestureDetector(
-                    onTap: openSignupPage,
-                    child: const Text('Create Account',
+                    onTap: openLoginPage,
+                    child: const Text('Log In',
                         style: TextStyle(
                           fontFamily: 'Inter',
                           color: primaryColor,
