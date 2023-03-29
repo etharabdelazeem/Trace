@@ -13,6 +13,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
   Future logIn() async {
     try {
@@ -20,11 +21,14 @@ class _LoginPageState extends State<LoginPage> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-    } on FirebaseAuthException catch (e) {
-      print('Failed with error code: ${e.code}');
-      print(e.message);
+      errorMessage = '';
+    } on FirebaseAuthException catch (error) {
+      errorMessage = error.message!;
     }
+    setState(() {});
   }
+
+  String errorMessage = '';
 
   void openSignupPage() {
     Navigator.of(context).pushReplacementNamed('signupPage');
@@ -73,8 +77,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: TextField(
+                    child: TextFormField(
                       controller: _emailController,
+                      validator: validateEmail,
                       decoration: const InputDecoration(
                         border: UnderlineInputBorder(),
                         hintText: 'Email',
@@ -96,8 +101,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: TextField(
+                    child: TextFormField(
                       controller: _passwordController,
+                      validator: validatePassword,
                       obscureText: true,
                       decoration: const InputDecoration(
                         border: UnderlineInputBorder(),
@@ -122,6 +128,18 @@ class _LoginPageState extends State<LoginPage> {
                     });
                   },
                   title: const Text("Remember Me"),
+                ),
+              ),
+
+              //error massege
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Center(
+                  child: Text(errorMessage,
+                      style: const TextStyle(
+                        fontFamily: 'Inter',
+                        color: Colors.red,
+                      )),
                 ),
               ),
 
@@ -177,4 +195,37 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ));
   }
+}
+
+//Checking if email feild is empty
+String? validateEmail(String? formEmail) {
+  if (formEmail == null || formEmail.isEmpty) {
+    return 'E-mail address is required.';
+  }
+
+  String pattern = r'\w+@\w+\.\w+';
+  RegExp regex = RegExp(pattern);
+  if (!regex.hasMatch(formEmail)) return 'Invalid E-mail Address format.';
+
+  return null;
+}
+
+//Checking if password feild is empty
+
+String? validatePassword(String? formPassword) {
+  if (formPassword == null || formPassword.isEmpty) {
+    return 'Password is required.';
+  }
+
+  String pattern =
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+  RegExp regex = RegExp(pattern);
+  if (!regex.hasMatch(formPassword)) {
+    return '''
+      Password must be at least 8 characters,
+      include an uppercase letter, number and symbol.
+      ''';
+  }
+
+  return null;
 }
