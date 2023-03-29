@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SplashScreen extends StatelessWidget {
   int duration = 0;
   final Widget goToPage;

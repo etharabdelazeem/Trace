@@ -1,6 +1,6 @@
 {
-    "name": "try1",
-    "short_name": "try1",
+    "name": "TRACE",
+    "short_name": "TRACE",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
