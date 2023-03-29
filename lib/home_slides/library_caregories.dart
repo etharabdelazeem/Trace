@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:try1/constants/my_widgets.dart';
+import 'package:TRACE/constants/my_widgets.dart';
 
 class LibraryCategories extends StatelessWidget {
   const LibraryCategories({super.key});

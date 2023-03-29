@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:try1/constants/my_widgets.dart';
+import 'package:TRACE/constants/my_widgets.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SettingeSlide extends StatelessWidget {
   const SettingeSlide({super.key});
@@ -91,7 +92,9 @@ class SettingeSlide extends StatelessWidget {
         height: 30,
       ),
       CustomButtonIcon(
-        onPressed: () {},
+        onPressed: () {
+          FirebaseAuth.instance.signOut();
+        },
         text: 'Log Out',
         myIcon: Icons.logout,
       )

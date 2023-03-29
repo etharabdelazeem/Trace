@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:try1/constants/my_widgets.dart';
-import 'package:try1/home_slides/home_slide.dart';
-import 'package:try1/home_slides/notification_slide.dart';
-import 'package:try1/home_slides/settings_slide.dart';
+import 'package:TRACE/constants/my_widgets.dart';
+import 'package:TRACE/home_slides/home_slide.dart';
+import 'package:TRACE/home_slides/notification_slide.dart';
+import 'package:TRACE/home_slides/settings_slide.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,6 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final user = FirebaseAuth.instance.currentUser ?? 'null';
+
   int _selectedIndex = 0;
   static String _selectedText = 'Home';
   void _onTapped(int index) {

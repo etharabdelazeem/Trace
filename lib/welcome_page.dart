@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:try1/constants/my_widgets.dart';
-import 'package:try1/home_page.dart';
+import 'package:TRACE/constants/my_widgets.dart';
+import 'package:TRACE/home_page.dart';
+import 'package:TRACE/login_page.dart';
+import 'package:TRACE/auth.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -38,7 +40,7 @@ class WelcomePage extends StatelessWidget {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const HomePage(),
+                      builder: (context) => const Auth(),
                     ))
               },
               text: 'Start Learning',
