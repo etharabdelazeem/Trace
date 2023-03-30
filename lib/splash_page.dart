@@ -16,10 +16,12 @@ class SplashScreen extends StatelessWidget {
           ));
     });
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Image.asset(
         'assets/images/logo.png',
         fit: BoxFit.fitWidth,
       ),
+
       // body: Container(
       //   // color: const Color(0xFF082c62),
       //   alignment: Alignment.center,

@@ -1,3 +1,4 @@
+import 'package:TRACE/home_slides/search_slide.dart';
 import 'package:flutter/material.dart';
 import 'package:TRACE/constants/my_widgets.dart';
 import 'package:TRACE/home_slides/library_caregories.dart';
@@ -157,12 +158,12 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 10),
 
               //Sign in as a guest button
-              CustomButton(
+              InvertedCustomButton(
                 onPressed: () => {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const LibraryCategories(),
+                        builder: (context) => const SearchSlide(),
                       ))
                 },
                 text: 'Log In as a Guest',
