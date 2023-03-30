@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/my_widgets.dart';
 import 'library_caregories.dart';
+import 'search_slide.dart';
 
 class HomeSlide extends StatelessWidget {
   const HomeSlide({super.key});
@@ -16,7 +17,12 @@ class HomeSlide extends StatelessWidget {
           height: 70,
         ),
         CustomButtonIcon(
-            onPressed: () {}, text: 'Search', myIcon: Icons.search),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const SearchSlide()));
+            },
+            text: 'Search',
+            myIcon: Icons.search),
         const SizedBox(
           height: 30,
         ),

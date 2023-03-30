@@ -1,3 +1,4 @@
+import 'package:TRACE/home_slides/search_slide.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -42,12 +43,18 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        actions: const [
-          Icon(
-            Icons.search,
-            size: 30,
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.search,
+              size: 30,
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const SearchSlide()));
+            },
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.fromLTRB(15.0, 8, 15, 20),
             child: Icon(
               Icons.account_circle_rounded,
