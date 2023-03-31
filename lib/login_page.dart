@@ -1,7 +1,6 @@
 import 'package:TRACE/home_slides/search_slide.dart';
 import 'package:flutter/material.dart';
 import 'package:TRACE/constants/my_widgets.dart';
-import 'package:TRACE/home_slides/library_caregories.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -14,7 +13,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
   Future logIn() async {
     try {

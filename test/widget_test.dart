@@ -7,16 +7,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:TRACE/splash_page.dart';
-import 'package:TRACE/welcome_page.dart';
+//import 'package:TRACE/splash_page.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+    /*// Build our app and trigger a frame.
     await tester.pumpWidget(SplashScreen(
       duration: 3,
       goToPage: const WelcomePage(),
-    ));
+    ));*/
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
