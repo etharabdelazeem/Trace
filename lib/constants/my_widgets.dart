@@ -22,18 +22,20 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        fixedSize: const Size(250, 60),
+        fixedSize: const Size(330, 55),
         backgroundColor: primaryColor,
         padding: const EdgeInsets.all(18.0),
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
       ),
       child: Text(
         text,
         textAlign: TextAlign.center,
         style: const TextStyle(
-          color: Colors.white,
-        ),
+            color: Colors.white,
+            fontFamily: 'Inter',
+            fontSize: 14.5,
+            fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -65,6 +67,7 @@ class CustomButtonSocial extends StatelessWidget {
               const SizedBox(width: 30.0),
               Text(text,
                   style: const TextStyle(
+                    fontFamily: 'Inter',
                     color: Colors.grey,
                     fontSize: 14,
                   ))
@@ -186,6 +189,44 @@ class Logo extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+}
+
+class InvertedCustomButton extends StatelessWidget {
+  // const CustomButton({Key? key}) : super(key: key);
+
+  final String text;
+  // final Alignment alignment;
+  final Function()? onPressed;
+
+  const InvertedCustomButton({
+    super.key,
+    this.text = '',
+    this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        fixedSize: const Size(330, 55),
+        backgroundColor: Colors.white,
+        padding: const EdgeInsets.all(18.0),
+        side: const BorderSide(width: 2.0, color: primaryColor),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+      ),
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+            fontFamily: 'Inter',
+            color: primaryColor,
+            fontSize: 14.5,
+            fontWeight: FontWeight.w600),
+      ),
     );
   }
 }

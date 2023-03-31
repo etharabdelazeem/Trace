@@ -1,6 +1,6 @@
+import 'package:TRACE/home_slides/search_slide.dart';
 import 'package:flutter/material.dart';
 import 'package:TRACE/constants/my_widgets.dart';
-import 'package:TRACE/home_slides/library_caregories.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,11 +15,19 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
 
   Future logIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _emailController.text.trim(),
-      password: _passwordController.text.trim(),
-    );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      errorMessage = '';
+    } on FirebaseAuthException catch (error) {
+      errorMessage = error.message!;
+    }
+    setState(() {});
   }
+
+  String errorMessage = '';
 
   void openSignupPage() {
     Navigator.of(context).pushReplacementNamed('signupPage');
@@ -68,8 +76,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: TextField(
+                    child: TextFormField(
                       controller: _emailController,
+                      validator: validateEmail,
                       decoration: const InputDecoration(
                         border: UnderlineInputBorder(),
                         hintText: 'Email',
@@ -91,8 +100,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: TextField(
+                    child: TextFormField(
                       controller: _passwordController,
+                      validator: validatePassword,
                       obscureText: true,
                       decoration: const InputDecoration(
                         border: UnderlineInputBorder(),
@@ -120,6 +130,18 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
 
+              //error massege
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Center(
+                  child: Text(errorMessage,
+                      style: const TextStyle(
+                        fontFamily: 'Inter',
+                        color: Colors.red,
+                      )),
+                ),
+              ),
+
               const SizedBox(height: 30),
 
               //Sign in button
@@ -134,12 +156,12 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 10),
 
               //Sign in as a guest button
-              CustomButton(
+              InvertedCustomButton(
                 onPressed: () => {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const LibraryCategories(),
+                        builder: (context) => const SearchSlide(),
                       ))
                 },
                 text: 'Log In as a Guest',
@@ -172,4 +194,37 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ));
   }
+}
+
+//Checking if email feild is empty
+String? validateEmail(String? formEmail) {
+  if (formEmail == null || formEmail.isEmpty) {
+    return 'E-mail address is required.';
+  }
+
+  String pattern = r'\w+@\w+\.\w+';
+  RegExp regex = RegExp(pattern);
+  if (!regex.hasMatch(formEmail)) return 'Invalid E-mail Address format.';
+
+  return null;
+}
+
+//Checking if password feild is empty
+
+String? validatePassword(String? formPassword) {
+  if (formPassword == null || formPassword.isEmpty) {
+    return 'Password is required.';
+  }
+
+  String pattern =
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+  RegExp regex = RegExp(pattern);
+  if (!regex.hasMatch(formPassword)) {
+    return '''
+      Password must be at least 8 characters,
+      include an uppercase letter, number and symbol.
+      ''';
+  }
+
+  return null;
 }

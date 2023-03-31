@@ -31,16 +31,24 @@ class _SearchSlideState extends State<SearchSlide> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('books')),
+        centerTitle: true,
+        title: const Text(
+          'Search',
+          textAlign: TextAlign.center,
+          style: TextStyle(color: primaryColordark),
+        ),
+        elevation: 0.0,
         backgroundColor: primaryColorLight,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20))),
       ),
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
             child: TextField(
               decoration: const InputDecoration(
-                  border: OutlineInputBorder(), hintText: "Search"),
+                  border: UnderlineInputBorder(), hintText: "Enter book name:"),
               onChanged: (query) {
                 search(query);
               },
